@@ -20,7 +20,7 @@ where `a` is autonomous selfing (as a percentage of the potential seed set),
 
 ```r
 # install.packages("remotes")
-remotes::install_github("nachobartomeus/VisitationR")
+remotes::install_github("ibartomeus/VisitationR")
 ```
 
 For a local checkout:
@@ -66,7 +66,7 @@ plot_visits(a = coef(model)[["a"]], b = coef(model)[["b"]],
             c = coef(model)[["c"]], to_ = 90)
 
 # Rescale a transect visit count
-V_transect_to_flower(V_transect = 50, flw_x_m2 = 100, lifespan = 8)
+V_transect_to_flower(V_transect = 50, transect_size = 100, flw_x_m2 = 100, lifespan = 8)
 #> [1] 400
 ```
 
@@ -94,12 +94,8 @@ devtools::test()      # run the testthat suite
 devtools::check()     # full R CMD check
 ```
 
-`man/` and `NAMESPACE` are generated from the roxygen comments in `R/` and are
-tracked in git. Never edit them by hand.
-
 Building the vignette requires [pandoc](https://pandoc.org/) (bundled with
-RStudio and RStudio Desktop's markdown support). `R CMD check` is clean:
-0 errors, 0 warnings, 0 notes.
+RStudio and RStudio Desktop's markdown support). 
 
 ## License
 

@@ -125,8 +125,8 @@ control population:
 
 ```{r}
 plot_visits(a = 30, b = 200, c = 10, to_ = 20, col_ = 2, lwd = 2)
-plot_visits(a = 10, b = 150, c = 3, to_ = 20, col_ = 4, lty = 2, lwd = 2)
-legend("bottomright", c("pollinated", "control"), col = c(2, 4),
+plot_visits(a = 10, b = 150, c = 3, to_ = 20, col_ = 4, lty = 2, lwd = 2, add_ = TRUE)
+legend("bottomright", c("high c", "low c"), col = c(2, 4),
        lty = c(1, 2), lwd = 2, bty = "n")
 ```
 
@@ -137,7 +137,7 @@ If visits were recorded along a fixed-area transect rather than per flower,
 flower lifespan:
 
 ```{r}
-V_transect_to_flower(V_transect = 50, flw_x_m2 = 100, lifespan = 8)
+V_transect_to_flower(V_transect = 50, transect_size = 100, flw_x_m2 = 100, lifespan = 8)
 ```
 
 ```{r sessioninfo}
