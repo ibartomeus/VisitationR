@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git$
+^\.gitignore$
+^\.github$
+^\.lintr$
+^LICENSE\.md$
+^README\.md$
+^data-raw$
+^\.Rcheck$
+^.*\.Rcheck$
+^.*\.tar\.gz$
+^Rplots\.pdf$
+^\.claude$
+^\.vscode$
+^\.idea$

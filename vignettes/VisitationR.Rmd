@@ -1,0 +1,145 @@
+---
+title: "Getting started with VisitationR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with VisitationR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4.5
+)
+```
+
+```{r setup, include = FALSE}
+library(VisitationR)
+```
+
+## The model
+
+VisitationR is built around one assumption: seed set increases with pollinator
+visits but saturates. Formally,
+
+$$
+\mathrm{seedset} = \frac{b\,a}{100} + \left(b - \frac{b\,a}{100}\right)\left(1 - e^{-c \cdot \mathrm{visits}}\right)
+$$
+
+with three parameters:
+
+| Parameter | Meaning                                                        |
+|-----------|----------------------------------------------------------------|
+| `a`       | Autonomous selfing, as a percentage of the potential seed set   |
+| `b`       | Potential (maximum) seed set                                    |
+| `c`       | Per-visit saturation parameter, i.e. the pollination rate       |
+
+The asymptote of the curve is `b`, and the value at zero visits is `b * a / 100`.
+`c` is the quantity of ecological interest: it tells you how quickly a flower
+moves from unpollinated towards fully pollinated.
+
+## Fitting `c` to observational data
+
+When you have counted visits and measured seed set in the field, use
+`fit_data()`:
+
+```{r}
+visits <- c(0, 2, 5, 10, 20, 40, 80)
+seedset <- c(20, 45, 70, 88, 96, 99, 100)
+
+fit <- fit_data(seedset = seedset, visitation = visits)
+fit
+```
+
+Ask for the standard errors instead of just the point estimates:
+
+```{r}
+fit_data(seedset = seedset, visitation = visits, simplify = "stats")
+```
+
+Keep the fitted object to compute goodness of fit and to plot:
+
+```{r}
+model <- fit_data(seedset = seedset, visitation = visits, simplify = "model")
+
+pseudo_R2(model = model, seedset = seedset)
+```
+
+```{r}
+plot_visits(
+  a = coef(model)[["a"]],
+  b = coef(model)[["b"]],
+  c = coef(model)[["c"]],
+  to_ = 90
+)
+```
+
+## Deriving `c` from a single-visit experiment
+
+If instead you measured three summary quantities — autonomous selfing (`a`),
+potential seed set (`b`) and single-visit deposition (`SVD`) — you can obtain
+`c` without running a field experiment. `calculate_visits()` discounts the
+autonomous selfing baseline from `SVD`, simulates the decaying deposition
+series, and fits the curve to it:
+
+```{r}
+my_c <- calculate_visits(a = 20, b = 100, SVD = 50)
+my_c
+```
+
+The `optimal_loss` element is the per-visit decay rate, which you can also
+obtain on its own with `loss()`.
+
+## Inverting the model: how many visits do you need?
+
+This is the usual question when designing an experiment or planning a
+restoration. `calculate_required_visits()` answers "how many visits are needed
+to reach 95% of the potential seed set?":
+
+```{r}
+calculate_required_visits(c_val = my_c$c_parameter, b = 100, a = 20)
+```
+
+Vary the target to see the whole trade-off:
+
+```{r}
+sapply(
+  seq(0.5, 0.99, by = 0.05),
+  function(p) calculate_required_visits(my_c$c_parameter, b = 100, a = 20,
+                                       target_percent = p)
+)
+```
+
+Note the asymmetry: going from 50% to 95% seed set requires many times more
+visits than going from 0% to 50%. This is exactly why a small increase in
+visitation can matter a lot in a pollination-limited system, and why the
+assumption of saturation needs to be checked.
+
+## Overlaying two populations
+
+`plot_visits()` can be layered, which is handy for comparing a manipulated and a
+control population:
+
+```{r}
+plot_visits(a = 30, b = 200, c = 10, to_ = 20, col_ = 2, lwd = 2)
+plot_visits(a = 10, b = 150, c = 3, to_ = 20, col_ = 4, lty = 2, lwd = 2)
+legend("bottomright", c("pollinated", "control"), col = c(2, 4),
+       lty = c(1, 2), lwd = 2, bty = "n")
+```
+
+## From a transect to flowers visited
+
+If visits were recorded along a fixed-area transect rather than per flower,
+`V_transect_to_flower()` rescales the counts using the local flower density and
+flower lifespan:
+
+```{r}
+V_transect_to_flower(V_transect = 50, flw_x_m2 = 100, lifespan = 8)
+```
+
+```{r sessioninfo}
+sessionInfo()
+```

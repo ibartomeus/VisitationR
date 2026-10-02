@@ -1,0 +1,44 @@
+# R / RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+*.Rproj.user
+
+# Stray plot files from running tests / examples interactively
+Rplots.pdf
+
+# Byte-compiled / cache
+*.Rcheck/
+*.tar.gz
+.Rhistory
+
+# Generated documentation and namespace (regenerate with `devtools::document()`)
+# NOTE: these are intentionally NOT ignored, so `man/` and `NAMESPACE` are
+# tracked in git as recommended for packages distributed outside of GitHub.
+# Uncomment the two lines below only if your workflow regenerates them on build:
+# man/
+# NAMESPACE
+
+# Vignettes
+*_cache/
+*_files/
+*.html
+*.nb.html
+*.knit.md
+
+# pkgdown / site
+docs/
+_site/
+_pkgdown.yml
+pkgdown/
+_index.html
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+.idea/
+.claude/

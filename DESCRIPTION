@@ -1,0 +1,34 @@
+Package: VisitationR
+Title: Estimate Pollinator Visitation Rates from Seed Set Data
+Version: 0.1.0
+Authors@R: c(
+    person("Ignasi", "Bartomeus",
+           , "nachobartomeus@gmail.com", role = c("aut", "cre"))
+    )
+Description: Fits saturating (Michaelis-Menten type) models that link the number
+    of pollinator visits to the resulting seed set in a plant population. The
+    package provides tools to fit the model to empirical data, to simulate and
+    fit the model when seed set saturates, to invert the model and predict the
+    number of visits required to reach a given proportion of the maximum seed
+    set, and to convert transect-based visit counts into the number of flowers
+    visited. It is intended for ecological studies of pollination limitation
+    and for power analyses that need to translate a seed set target into a
+    required visitation rate.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
+Imports:
+    graphics,
+    stats,
+    utils
+Suggests:
+    knitr,
+    testthat (>= 3.0.0)
+VignetteBuilder:
+    knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Config/testthat/edition: 3
+URL: https://github.com/nachobartomeus/VisitationR
+BugReports: https://github.com/nachobartomeus/VisitationR/issues

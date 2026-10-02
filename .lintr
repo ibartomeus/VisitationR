@@ -1,0 +1,15 @@
+linters: with_defaults(
+    line_length_linter(120),
+    object_name_linter(styles = c("snake_case", "symbols")),
+    commented_code_linter(),
+    cyclocomp_linter(limit = 15),
+    assignment_linter(),
+    object_length_linter()
+  )
+exclusions: list(
+    "RcppExports.R",
+    "tests/testthat.R",
+    "vignettes",
+    "man"
+  )
+encoding: "UTF-8"
