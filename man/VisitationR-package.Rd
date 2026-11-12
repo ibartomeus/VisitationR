@@ -6,9 +6,9 @@
 \alias{VisitationR-package}
 \title{VisitationR: Estimate Pollinator Visitation Rates from Seed Set Data}
 \description{
-VisitationR fits saturating (Michaelis-Menten type) models that relate the
-number of pollinator visits to the resulting seed set of a plant
-population. All exported functions assume the same model form:
+VisitationR fits biologically realistic saturating (Michaelis-Menten type)
+models that link the number of pollinator visits to the resulting seed set
+in a plant population. All exported functions assume the same model form:
 }
 \details{
 \deqn{\mathrm{seedset} = \frac{b \cdot a}{100} + \left(b - \frac{b \cdot a}{100}\right) \cdot \left(1 - e^{-c \cdot \mathrm{visits}}\right)}
@@ -22,7 +22,7 @@ The package can be used in three ways:
 \item to fit \code{c} directly to empirical \verb{(visitation, seedset)} data with
 \code{\link[=fit_data]{fit_data()}};
 \item to derive \code{c} from selfing rate, potential seed set and single-visit
-deposition with \code{\link[=calculate_visits]{calculate_visits()}};
+efficiency with \code{\link[=calculate_visits]{calculate_visits()}};
 \item to invert the model and predict the visits needed to reach a target seed
 set with \code{\link[=calculate_required_visits]{calculate_required_visits()}}.
 }

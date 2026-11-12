@@ -11,10 +11,10 @@ calculate_required_visits(c_val, b, a, target_percent = 0.95)
 \code{\link[=calculate_visits]{calculate_visits()}}\verb{$c_parameter} or as the \code{c} coefficient of
 \code{\link[=fit_data]{fit_data()}}.}
 
-\item{b}{Potential (maximum) seed set.}
+\item{b}{Potential (maximum) seed set in number of seeds.}
 
 \item{a}{Percentage of the maximum seed set obtained through autonomous
-selfing.}
+selfing in \%.}
 
 \item{target_percent}{Proportion of \code{b} to be reached, between 0 and 1.
 Defaults to \code{0.95} (95\% of the potential seed set).}

@@ -8,9 +8,9 @@ plot_visits(a, b, c, from_ = 0, to_ = 1, add_ = FALSE, col_ = 2, ...)
 }
 \arguments{
 \item{a}{Percentage of the maximum seed set obtained through autonomous
-selfing.}
+selfing in \%.}
 
-\item{b}{Potential (maximum) seed set.}
+\item{b}{Potential (maximum) seed set in number of seeds.}
 
 \item{c}{Per-visit saturation parameter, usually obtained from
 \code{\link[=fit_data]{fit_data()}} or \code{\link[=calculate_visits]{calculate_visits()}}.}

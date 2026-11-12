@@ -2,18 +2,18 @@
 % Please edit documentation in R/calculate_visits.R
 \name{calculate_visits0}
 \alias{calculate_visits0}
-\title{Estimate the visitation parameter with a user-supplied decay rate}
+\title{Estimate the visitation curve with user-supplied initial parameters by simulations}
 \usage{
 calculate_visits0(a, b, SVD, loss = 0.1, to_ = 100, plot_ = FALSE, col_ = 2)
 }
 \arguments{
 \item{a}{Percentage of the maximum seed set obtained through autonomous
-selfing.}
+selfing (in \%).}
 
-\item{b}{Potential (maximum) seed set.}
+\item{b}{Potential (maximum) seed set in number of seeds.}
 
-\item{SVD}{Single-visit deposition expressed in seed set units, i.e. the
-seed set increment produced by one pollinator visit.}
+\item{SVD}{Single-visit efficiency expressed in seed set units, i.e. the
+seed set number produced by one pollinator visit.}
 
 \item{loss}{Per-visit decay rate of the single-visit deposition. Use
 \code{\link[=loss]{loss()}} to compute a value that converges on \code{b}.}
@@ -34,7 +34,7 @@ parameter \code{c}.
 Simulation-based variant of \code{\link[=calculate_visits]{calculate_visits()}}. A deposition series with a
 geometrically decaying per-visit contribution is accumulated, and the
 saturation parameter \code{c} is then obtained by fitting the saturating model to
-that simulated series with \code{\link[stats:nls]{stats::nls()}}.
+that simulated series with \code{\link[stats:nls]{stats::nls()}}. Useful to use alternative loss values
 }
 \examples{
 calculate_visits0(a = 20, b = 100, SVD = 50, loss = 0.5)

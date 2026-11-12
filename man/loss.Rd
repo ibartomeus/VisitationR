@@ -8,12 +8,12 @@ loss(a, b, SVD)
 }
 \arguments{
 \item{a}{Percentage of the maximum seed set obtained through autonomous
-selfing.}
+selfing in \%.}
 
-\item{b}{Potential (maximum) seed set.}
+\item{b}{Potential (maximum) seed set in see set number.}
 
 \item{SVD}{Single-visit deposition expressed in seed set units, i.e. the
-seed set increment produced by one pollinator visit.}
+seed set number produced by one pollinator visit.}
 }
 \value{
 A single numeric value, the decay rate to pass as the \code{loss}

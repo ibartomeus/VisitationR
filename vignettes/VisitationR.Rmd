@@ -132,7 +132,7 @@ If visits were recorded along a fixed-area transect rather than per flower,
 flower lifespan:
 
 ```{r}
-V_transect_to_flower(V_transect = 50, transect_size = 100, flw_x_m2 = 100, lifespan = 8)
+V_transect_to_flower(V_transect = 50, transect_time = 30,transect_size = 100, flw_x_m2 = 100, lifespan = 8)
 ```
 
 ```{r sessioninfo}

@@ -2,25 +2,25 @@
 % Please edit documentation in R/calculate_visits.R
 \name{calculate_visits}
 \alias{calculate_visits}
-\title{Estimate the visitation parameter analytically}
+\title{Estimate the visitation curve with user-supplied initial parameters analytically}
 \usage{
 calculate_visits(a, b, SVD, from_ = 0, to_ = 100, plot_ = FALSE, col_ = 2)
 }
 \arguments{
 \item{a}{Percentage of the maximum seed set obtained through autonomous
-selfing.}
+selfing in \%.}
 
-\item{b}{Potential (maximum) seed set.}
+\item{b}{Potential (maximum) seed set in number of seeds.}
 
-\item{SVD}{Single-visit deposition expressed in seed set units, i.e. the
-seed set increment produced by one pollinator visit. This is the raw
+\item{SVD}{Single-visit efficialcy expressed in seed set units, i.e. the
+seed set number produced by one pollinator visit. This is the raw
 empirical value; the autonomous-selfing contribution is subtracted
 internally.}
 
 \item{from_}{Lower bound of the x-axis when \code{plot_} is \code{TRUE}. Defaults
 to \code{0}.}
 
-\item{to_}{Maximum number of visits to simulate, and upper bound of the
+\item{to_}{Upper bound of the
 x-axis when \code{plot_} is \code{TRUE}. Defaults to \code{100}.}
 
 \item{plot_}{Logical. If \code{TRUE}, plot the simulated points and the fitted
@@ -45,9 +45,9 @@ model from three quantities that are usually easy to measure:
 \details{
 \describe{
 \item{\code{a}}{the percentage of the potential seed set obtained through
-autonomous selfing;}
-\item{\code{b}}{the potential (maximum) seed set;}
-\item{\code{SVD}}{the single-visit deposition, i.e. the seed set increment
+autonomous selfing in \%;}
+\item{\code{b}}{the potential (maximum) seed set in number of seeds;}
+\item{\code{SVD}}{the single-visit efficiency, i.e. the seed set number
 produced by one pollinator visit.}
 }
 
@@ -60,8 +60,9 @@ The fit is reported with its standard error.
 \section{Errors}{
 
 The function stops if the empirical \code{SVD} is smaller than the
-autonomous-selfing baseline (the pollinator contribution would be
-negative), or if the discounted \code{SVD} exceeds the remaining gap (total seed
+autonomous-selfing baseline (this implies the pollinator contribution would be
+negative), or if the discounted \code{SVD} exceeds the remaining gap (this implies
+one visit would produce more seeds than the potential seed number and total seed
 set would overshoot \code{b}).
 }
 

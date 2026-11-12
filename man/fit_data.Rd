@@ -15,7 +15,7 @@ fit_data(
 }
 \arguments{
 \item{seedset}{Numeric vector of observed seed set values (e.g. mean number
-of seeds produced per flower, or per fruit).}
+of seeds produced per fruit).}
 
 \item{visitation}{Numeric vector of observed pollinator visitation rates.
 Must be the same length as \code{seedset}. The values are interpreted on the
@@ -51,7 +51,7 @@ Fits the nonlinear model
 \details{
 \deqn{\mathrm{seedset} = \frac{b \cdot a}{100} + \left(b - \frac{b \cdot a}{100}\right) \cdot \left(1 - e^{-c \cdot \mathrm{visitation}}\right)}
 
-to observed pairs of pollinator visitation rates and resulting seed set,
+to observed data on pollinator visitation rates and the resulting seed set,
 using \code{\link[stats:nls]{stats::nls()}}. All three parameters -- \code{a} (autonomous selfing as a
 percentage of the potential seed set), \code{b} (potential/maximum seed set) and
 \code{c} (per-visit saturation parameter) -- are estimated simultaneously.
