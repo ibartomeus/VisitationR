@@ -12,9 +12,9 @@
 #' @param c_val Per-visit saturation parameter, as returned by
 #'   [calculate_visits()]`$c_parameter` or as the `c` coefficient of
 #'   [fit_data()].
-#' @param b Potential (maximum) seed set.
+#' @param b Potential (maximum) seed set in number of seeds.
 #' @param a Percentage of the maximum seed set obtained through autonomous
-#'   selfing.
+#'   selfing in %.
 #' @param target_percent Proportion of `b` to be reached, between 0 and 1.
 #'   Defaults to `0.95` (95% of the potential seed set).
 #'

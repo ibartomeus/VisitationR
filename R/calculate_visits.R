@@ -11,10 +11,10 @@
 #' without ever overshooting it.
 #'
 #' @param a Percentage of the maximum seed set obtained through autonomous
-#'   selfing.
-#' @param b Potential (maximum) seed set.
+#'   selfing in %.
+#' @param b Potential (maximum) seed set in see set number.
 #' @param SVD Single-visit deposition expressed in seed set units, i.e. the
-#'   seed set increment produced by one pollinator visit.
+#'   seed set number produced by one pollinator visit.
 #'
 #' @return A single numeric value, the decay rate to pass as the `loss`
 #'   argument of [calculate_visits0()].
@@ -32,18 +32,18 @@ loss <- function(a, b, SVD) {
   SVD/(b-(b*a/100))
 }
 
-#' Estimate the visitation parameter with a user-supplied decay rate
+#' Estimate the visitation curve with user-supplied initial parameters by simulations
 #'
 #' Simulation-based variant of [calculate_visits()]. A deposition series with a
 #' geometrically decaying per-visit contribution is accumulated, and the
 #' saturation parameter `c` is then obtained by fitting the saturating model to
-#' that simulated series with [stats::nls()].
+#' that simulated series with [stats::nls()]. Useful to use alternative loss values
 #'
 #' @param a Percentage of the maximum seed set obtained through autonomous
-#'   selfing.
-#' @param b Potential (maximum) seed set.
-#' @param SVD Single-visit deposition expressed in seed set units, i.e. the
-#'   seed set increment produced by one pollinator visit.
+#'   selfing (in %).
+#' @param b Potential (maximum) seed set in number of seeds.
+#' @param SVD Single-visit efficiency expressed in seed set units, i.e. the
+#'   seed set number produced by one pollinator visit.
 #' @param loss Per-visit decay rate of the single-visit deposition. Use
 #'   [loss()] to compute a value that converges on `b`.
 #' @param to_ Maximum number of visits to simulate. Defaults to `100`.
@@ -109,16 +109,16 @@ calculate_visits0 <- function(a, b, SVD, loss = 0.1, to_ = 100,
   c
 }
 
-#' Estimate the visitation parameter analytically
+#' Estimate the visitation curve with user-supplied initial parameters analytically
 #'
 #' Derives the per-visit saturation parameter `c` of the saturating visitation
 #' model from three quantities that are usually easy to measure:
 #'
 #' \describe{
 #'   \item{`a`}{the percentage of the potential seed set obtained through
-#'     autonomous selfing;}
-#'   \item{`b`}{the potential (maximum) seed set;}
-#'   \item{`SVD`}{the single-visit deposition, i.e. the seed set increment
+#'     autonomous selfing in %;}
+#'   \item{`b`}{the potential (maximum) seed set in number of seeds;}
+#'   \item{`SVD`}{the single-visit efficiency, i.e. the seed set number
 #'     produced by one pollinator visit.}
 #' }
 #'
@@ -129,15 +129,15 @@ calculate_visits0 <- function(a, b, SVD, loss = 0.1, to_ = 100,
 #' The fit is reported with its standard error.
 #'
 #' @param a Percentage of the maximum seed set obtained through autonomous
-#'   selfing.
-#' @param b Potential (maximum) seed set.
-#' @param SVD Single-visit deposition expressed in seed set units, i.e. the
-#'   seed set increment produced by one pollinator visit. This is the raw
+#'   selfing in %.
+#' @param b Potential (maximum) seed set in number of seeds.
+#' @param SVD Single-visit efficialcy expressed in seed set units, i.e. the
+#'   seed set number produced by one pollinator visit. This is the raw
 #'   empirical value; the autonomous-selfing contribution is subtracted
 #'   internally.
 #' @param from_ Lower bound of the x-axis when `plot_` is `TRUE`. Defaults
 #'   to `0`.
-#' @param to_ Maximum number of visits to simulate, and upper bound of the
+#' @param to_ Upper bound of the
 #'   x-axis when `plot_` is `TRUE`. Defaults to `100`.
 #' @param plot_ Logical. If `TRUE`, plot the simulated points and the fitted
 #'   curve. Defaults to `FALSE`.
@@ -154,8 +154,9 @@ calculate_visits0 <- function(a, b, SVD, loss = 0.1, to_ = 100,
 #'
 #' @section Errors:
 #' The function stops if the empirical `SVD` is smaller than the
-#' autonomous-selfing baseline (the pollinator contribution would be
-#' negative), or if the discounted `SVD` exceeds the remaining gap (total seed
+#' autonomous-selfing baseline (this implies the pollinator contribution would be
+#' negative), or if the discounted `SVD` exceeds the remaining gap (this implies 
+#' one visit would produce more seeds than the potential seed number and total seed
 #' set would overshoot `b`).
 #'
 #' @seealso [loss()], [calculate_required_visits()] to invert the resulting

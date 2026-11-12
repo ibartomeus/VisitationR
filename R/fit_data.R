@@ -4,13 +4,13 @@
 #'
 #' \deqn{\mathrm{seedset} = \frac{b \cdot a}{100} + \left(b - \frac{b \cdot a}{100}\right) \cdot \left(1 - e^{-c \cdot \mathrm{visitation}}\right)}
 #'
-#' to observed pairs of pollinator visitation rates and resulting seed set,
+#' to observed data on pollinator visitation rates and the resulting seed set,
 #' using [stats::nls()]. All three parameters -- `a` (autonomous selfing as a
 #' percentage of the potential seed set), `b` (potential/maximum seed set) and
 #' `c` (per-visit saturation parameter) -- are estimated simultaneously.
 #'
 #' @param seedset Numeric vector of observed seed set values (e.g. mean number
-#'   of seeds produced per flower, or per fruit).
+#'   of seeds produced per fruit).
 #' @param visitation Numeric vector of observed pollinator visitation rates.
 #'   Must be the same length as `seedset`. The values are interpreted on the
 #'   scale on which `c` is to be expressed (usually mean number of visits per

@@ -7,8 +7,8 @@
 #' between `from_` and `to_`, using [graphics::curve()].
 #'
 #' @param a Percentage of the maximum seed set obtained through autonomous
-#'   selfing.
-#' @param b Potential (maximum) seed set.
+#'   selfing in %.
+#' @param b Potential (maximum) seed set in number of seeds.
 #' @param c Per-visit saturation parameter, usually obtained from
 #'   [fit_data()] or [calculate_visits()].
 #' @param from_ Lower bound of the x-axis (number of visits). Defaults to `0`.

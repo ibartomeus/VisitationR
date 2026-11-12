@@ -1,8 +1,8 @@
 #' VisitationR: Estimate Pollinator Visitation Rates from Seed Set Data
 #'
-#' VisitationR fits saturating (Michaelis-Menten type) models that relate the
-#' number of pollinator visits to the resulting seed set of a plant
-#' population. All exported functions assume the same model form:
+#' VisitationR fits biologically realistic saturating (Michaelis-Menten type) 
+#' models that link the number of pollinator visits to the resulting seed set
+#'  in a plant population. All exported functions assume the same model form:
 #'
 #' \deqn{\mathrm{seedset} = \frac{b \cdot a}{100} + \left(b - \frac{b \cdot a}{100}\right) \cdot \left(1 - e^{-c \cdot \mathrm{visits}}\right)}
 #'
@@ -15,7 +15,7 @@
 #' * to fit `c` directly to empirical `(visitation, seedset)` data with
 #'   [fit_data()];
 #' * to derive `c` from selfing rate, potential seed set and single-visit
-#'   deposition with [calculate_visits()];
+#'   efficiency with [calculate_visits()];
 #' * to invert the model and predict the visits needed to reach a target seed
 #'   set with [calculate_required_visits()].
 #'
