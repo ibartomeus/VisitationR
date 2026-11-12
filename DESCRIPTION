@@ -5,15 +5,12 @@ Authors@R: c(
     person("Ignasi", "Bartomeus",
            , "nachobartomeus@gmail.com", role = c("aut", "cre"))
     )
-Description: Fits saturating (Michaelis-Menten type) models that link the number
-    of pollinator visits to the resulting seed set in a plant population. The
-    package provides tools to fit the model to empirical data, to simulate and
-    fit the model when seed set saturates, to invert the model and predict the
-    number of visits required to reach a given proportion of the maximum seed
-    set, and to convert transect-based visit counts into the number of flowers
-    visited. It is intended for ecological studies of pollination limitation
-    and for power analyses that need to translate a seed set target into a
-    required visitation rate.
+Description: Fits biologically realistic saturating (Michaelis-Menten type) models
+    that link the number of pollinator visits to the resulting seed set in a 
+    plant population. The package provides tools to fit the model to empirical 
+    data, to mechanistically calculate the model from basic parameters, and to 
+    calculate the number of visits required to reach a given proportion of the maximum seed
+    set.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:

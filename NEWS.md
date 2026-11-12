@@ -3,7 +3,7 @@
 * First release.
 
 * `fit_data()` fits a saturating visitation model to empirical
-  `(visitation, seedset)` pairs.
+  `(visitation, seedset)` data.
 
 * `calculate_visits()` derives the visitation parameter `c` analytically from
   selfing rate, potential seed set and single-visit deposition, without
