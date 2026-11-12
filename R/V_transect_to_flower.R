@@ -12,7 +12,7 @@
 #' @param transect_time Numeric value indicating the number of effective minutes invested on the transect.
 #' @param flw_x_m2 Numeric value giving the flower density, i.e. the mean
 #'   number of open flowers per square metre.
-#' @param lifespan Numeric value giving the mean lifespan of a single flower
+#' @param lifespan Numeric value giving the mean lifespan (time the flower is open) of a single flower
 #'   in the units used by `V_transect` (usually minutes).
 #'
 #' @return Numeric vector of the same length as `V_transect`, giving the number
