@@ -79,8 +79,8 @@ plot_visits(
 
 ## Deriving `c` from a single-visit experiment
 
-If instead you measured three summary quantities — autonomous selfing (`a`),
-potential seed set (`b`) and single-visit deposition (`SVD`) — you can obtain
+If instead you have access to biological relevant parameters — autonomous selfing (`a`),
+potential seed set (`b`) and pollinator single-visit deposition (`SVD`) — you can obtain
 `c` without running a field experiment. `calculate_visits()` discounts the
 autonomous selfing baseline from `SVD`, simulates the decaying deposition
 series, and fits the curve to it:
@@ -95,38 +95,33 @@ obtain on its own with `loss()`.
 
 ## Inverting the model: how many visits do you need?
 
-This is the usual question when designing an experiment or planning a
-restoration. `calculate_required_visits()` answers "how many visits are needed
+This is a key question when designing an experiment. `calculate_required_visits()` answers "how many visits are needed
 to reach 95% of the potential seed set?":
 
 ```{r}
 calculate_required_visits(c_val = my_c$c_parameter, b = 100, a = 20)
 ```
 
-Vary the target to see the whole trade-off:
+Vary the target % to see the whole trade-off:
 
 ```{r}
-sapply(
+visits <- sapply(
   seq(0.5, 0.99, by = 0.05),
   function(p) calculate_required_visits(my_c$c_parameter, b = 100, a = 20,
-                                       target_percent = p)
-)
+                                       target_percent = p))
+threshold <- seq(0.5, 0.99, by = 0.05)
+plot(visits ~ threshold)
 ```
 
-Note the asymmetry: going from 50% to 95% seed set requires many times more
-visits than going from 0% to 50%. This is exactly why a small increase in
-visitation can matter a lot in a pollination-limited system, and why the
-assumption of saturation needs to be checked.
+## Overlaying two models
 
-## Overlaying two populations
-
-`plot_visits()` can be layered, which is handy for comparing a manipulated and a
-control population:
+`plot_visits()` can be layered, which is handy for comparing an experimental and a
+mechanistically calculated population:
 
 ```{r}
-plot_visits(a = 30, b = 200, c = 10, to_ = 20, col_ = 2, lwd = 2)
-plot_visits(a = 10, b = 150, c = 3, to_ = 20, col_ = 4, lty = 2, lwd = 2, add_ = TRUE)
-legend("bottomright", c("high c", "low c"), col = c(2, 4),
+plot_visits(a = 20, b = 170, c = 10, to_ = 20, col_ = 2, lwd = 2)
+plot_visits(a = 10, b = 150, c = 8, to_ = 20, col_ = 4, lty = 2, lwd = 2, add_ = TRUE)
+legend("bottomright", c("experiment", "mechanistic"), col = c(2, 4),
        lty = c(1, 2), lwd = 2, bty = "n")
 ```
 
