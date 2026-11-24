@@ -70,7 +70,7 @@ plot_visits(a = coef(model)[["a"]], b = coef(model)[["b"]],
             c = coef(model)[["c"]], to_ = 90)
 
 # Rescale a transect visit count
-V_transect_to_flower(V_transect = 50, transect_size = 100, flw_x_m2 = 100, lifespan = 8)
+V_transect_to_flower(V_transect = 50, transect_time = 100, transect_size = 100, flw_x_m2 = 100, lifespan = 8)
 #> [1] 400
 ```
 
